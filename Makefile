@@ -1,10 +1,13 @@
 SERVER = server
 CLIENT = client
 
-SRC = server.c client.c utils.c
 INCLUDE = minitalk.h
 
-OBJ_S = $(SRC:%.c = %.o)
+SRC_S = server.c utils.c
+SRC_C = client.c utils.c
+
+OBJ_S = $(SRC_S:%.c = %.o)
+OBJ_C = $(SRC_C:%.c = %.o)
 
 %.o : %.c
 	gcc -Wall -Error -Extra -I $(INCLUDE) -c $< -o $@
@@ -15,10 +18,10 @@ $(SERVER) : $(OBJ_S)
 	gcc -Wall -Werror -Wextra -I $(INCLUDE) $(OBJ_S) -o $(SERVER)
 
 $(CLIENT) : $(OBJ_S)
-	gcc -Wall -Werror -Wextra -I $(INCLUE) $(OBJ_S) -o $(CLIENT)
+	gcc -Wall -Werror -Wextra -I $(INCLUDE) $(OBJ_C) -o $(CLIENT)
 
-clean : $(OBJ_S)
-	rm -f $(OBJ_S)
+clean :
+	rm -f $(OBJ_S) $(OBJ_C)
 
 fclean : clean
 	rm -f $(SERVER) $(CLIENT)
