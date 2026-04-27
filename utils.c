@@ -42,27 +42,23 @@ int	ft_fputchar(char c)
 
 void	ft_fputnbr_deci(long n)
 {
-	int			cnt;
-	char		buf[32];
-
 	if (n == 0)
   {
 		ft_fputchar('0');
     return ;
   }
-	cnt = 0;
 	if (n < 0)
 	{
 		ft_fputchar('-');
 		n = -n;
 	}
-	while (n > 0)
+	if (n >= 10)
 	{
-		buf[cnt] = (n % 10) + '0';
-		n /= 10;
-		cnt++;
-	}
-  ft_fputstr(buf);
+      ft_fputnbr_deci(n / 10);
+      ft_fputnbr_deci(n % 10);
+  }
+  else 
+    ft_fputchar(n + '0');  
 }
 
 void	ft_fputstr(char *str)
