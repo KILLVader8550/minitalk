@@ -6,10 +6,6 @@ void  handler_signal(int signal)
     static unsigned char  character = 0;
     static int            bit = 0;
 
-    if (signal == SIGUSR1)
-        printf("1 ");
-    else
-        printf("0 ");
     bit++;
     character |= (signal == SIGUSR1);
     if (bit == 8)
