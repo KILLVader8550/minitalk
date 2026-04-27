@@ -14,12 +14,12 @@ void  send_signal(pid_t server_pid, cosnt unsigned char char)
    {
        if (buf & mask)
        {
-           if (kill(server_pid), SIGUSR1)
-               ft_fputstr("Errow while sending\n")
+           if (kill(server_pid, SIGUSR1))
+               ft_fputstr("Errow while sending\n");
        }
        else
        {
-           if (kill(serer_pid), SIGUSR2)
+           if (kill(server_pid, SIGUSR2))
                ft_fputstr("Error while sending\n");
        }
        mask >>= 1;
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
         exit(0);
     }
     i = 0;
-    server_pid = ft_atoi(argv[1])
+    server_pid = ft_atoi(argv[1]);
     while (argv[2][i])
         send_signal(server_pid, argv[2][i++]);
     send_signal(server_pid, '\0');
