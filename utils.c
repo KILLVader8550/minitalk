@@ -62,6 +62,7 @@ void	ft_fputnbr_deci(long n)
 		n /= 10;
 		cnt++;
 	}
+  ft_fputstr(buf);
 }
 
 void	ft_fputstr(char *str)
