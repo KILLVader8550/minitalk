@@ -5,7 +5,6 @@ void  send_signal(pid_t server_pid, const unsigned char character)
    unsigned char  buf;
    int            mask;
    int            i;
-   int            signal;
 
    buf = character;
    mask = 0b10000000;
