@@ -22,6 +22,9 @@ void  handler_signal(int signal)
 
 int main()
 {
+    ft_fputstr("PID: ");
+    ft_fputnbr_deci(getpid());
+    ft_fputchar('\n');
     signal(SIGUSR1, handler_signal);
     signal(SIGUSR2, handler_signal);
     while(1)
