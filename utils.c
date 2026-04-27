@@ -73,5 +73,5 @@ void	ft_fputstr(char *str)
 		return ;
 	cnt = 0;
 	while (str[cnt])
-		cnt++;
+      ft_fputchar(str[cnt++]);
 }
