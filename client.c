@@ -1,4 +1,5 @@
 #include "minitalk.h"
+#include <stdio.h>
 
 void  send_signal(pid_t server_pid, const unsigned char character)
 {
@@ -13,16 +14,20 @@ void  send_signal(pid_t server_pid, const unsigned char character)
    {
        if (buf & mask)
        {
-           if (kill(server_pid, SIGUSR1))
+           printf("1 ");
+           if (kill(server_pid, SIGUSR1) == -1)
                ft_fputstr("Errow while sending\n");
        }
        else
        {
-           if (kill(server_pid, SIGUSR2))
+           printf("0 ");
+           if (kill(server_pid, SIGUSR2) == -1)
                ft_fputstr("Error while sending\n");
        }
        mask >>= 1;
+       usleep(42);
    }
+   printf("\n");
 }
 
 int main(int argc, char **argv)

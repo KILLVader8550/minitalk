@@ -1,22 +1,28 @@
 #include "minitalk.h"
+#include <stdio.h>
 
 void  handler_signal(int signal)
 {
-    static unsigned char  character;
-    static int            bit;
+    static unsigned char  character = 0;
+    static int            bit = 0;
 
-    if (bit < 8)
+    bit++;
+    character |= (signal == SIGUSR1);
+    if (signal == SIGUSR1)
+        printf("1 ");
+    else
+        printf("0 ");
+    if (bit == 8)
     {
-        character |= (signal == SIGUSR1);
-        character <<= 1;
-        bit++;
-    }
-    else 
-    {
-        ft_fputchar(character);
+        if (character == '\0')
+            ft_fputchar('\n');
+        else
+            ft_fputchar(character);
         bit = 0;
         character = 0;
     }
+    else
+        character <<= 1;
 }
 
 int main()
