@@ -1,13 +1,13 @@
 #include "minitalk.h"
 
-void  send_signal(pid_t server_pid, const unsigned char char)
+void  send_signal(pid_t server_pid, const unsigned char character)
 {
    unsigned char  buf;
    int            mask;
    int            i;
    int            signal;
 
-   buf = char;
+   buf = character;
    mask = 0b10000000;
    i = 0;
    while (i++ < 8)
