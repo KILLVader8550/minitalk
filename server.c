@@ -1,5 +1,4 @@
 #include "minitalk.h"
-#include <stdio.h>
 
 static void	*ft_memset(void *s, int c, size_t n)
 {
@@ -23,16 +22,16 @@ void  handler_signal(int signal, siginfo_t *info, void *context)
     if (bit == 8)
     {
         if (character == '\0')
-            ft_fputchar('\n');
+            ft_fputchar('\n', 1);
         else
-            ft_fputchar(character);
+            ft_fputchar(character, 1);
         bit = 0;
         character = 0;
     }
     else
         character <<= 1;
-    if (kill(info->si_pid, signal) == -1)
-        ft_fputstr("Can't acknowledge\n");
+    if (kill(info->si_pid, SIGUSR1) == -1)
+        error_exit(SENDING_ERROR);
 }
 
 int main()
@@ -43,9 +42,9 @@ int main()
     sigemptyset(&sa.sa_mask);
     sa.sa_sigaction = &handler_signal;
     sa.sa_flags = SA_SIGINFO;
-    ft_fputstr("PID: ");
+    ft_fputstr("PID: ", 1);
     ft_fputnbr_deci(getpid());
-    ft_fputchar('\n');
+    ft_fputchar('\n', 1);
     sigaction(SIGUSR1, &sa, NULL);
     sigaction(SIGUSR2, &sa, NULL);
     while(1)

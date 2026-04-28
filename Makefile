@@ -1,28 +1,47 @@
 SERVER = server
 CLIENT = client
 
+SERVER_BONUS = server_bonus
+CLIENT_BONUS = client_bonus
+
 SRC_S = server.c utils.c
 SRC_C = client.c utils.c
+
+BONUS_S = server_bonus.c utils_bonus.c
+BONUS_C = server_bonus.c utils_bonus.c
+
+FLAG = -fsanitize=address -Wall -Werror -Wextra
 
 OBJ_S = $(SRC_S:%.c=%.o)
 OBJ_C = $(SRC_C:%.c=%.o)
 
+BONUS_S_O = $(BONUS_S:%.c=%.o)
+BONUS_C_O = $(BONUS_S:%.c=%.o)
+
 %.o : %.c
-	cc -Wall -Werror -Wextra -c $< -o $@
+	cc $(FLAG) -c $< -o $@
 
 all : $(SERVER) $(CLIENT)
 
 $(SERVER) : $(OBJ_S)
-	cc -Wall -Werror -Wextra $(OBJ_S) -o $(SERVER)
+	cc $(FLAG) $(OBJ_S) -o $(SERVER)
 
 $(CLIENT) : $(OBJ_C)
-	cc -Wall -Werror -Wextra $(OBJ_C) -o $(CLIENT)
+	cc $(FLAG) $(OBJ_C) -o $(CLIENT)
+
+$(SERVER_BONUS) : $(OBJ_S)
+	cc $(FLAG) $(OBJ_S) -o $(SERVER_BONUS)
+
+$(CLIENT_BONUS) : $(OBJ_C)
+	cc $(FLAG) $(OBJ_C) -o $(CLIENT_BONUS)
+
+bonus : $(SERVER_BONUS) $(CLIENT_BONUS)
 
 clean :
-	rm -f $(OBJ_S) $(OBJ_C)
+	rm -f $(OBJ_S) $(OBJ_C) $(BONUS_S_O) $(BONUS_C_O)
 
 fclean : clean
-	rm -f $(SERVER) $(CLIENT)
+	rm -f $(SERVER) $(CLIENT) $(BONUS_C) $(BONUS_S)
 
 re : fclean all
 

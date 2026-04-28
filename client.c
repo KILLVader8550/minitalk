@@ -1,15 +1,10 @@
 #include "minitalk.h"
-#include <stdio.h>
-#include <signal.h>
 
 int g_status = 0;
 
-static void ack(int signal)
+static void ack()
 {
-    if (signal == SIGUSR2)
-        ft_fputstr("SEND SIGUSR2: SUCCESS\n");
-    else
-        ft_fputstr("SEND SIGUSR1: SUCCESS\n");
+    ft_fputstr("SEND SUCCESS\n", 1);
     g_status = 1;
 }
 
@@ -29,12 +24,12 @@ void  send_signal(pid_t server_pid, const unsigned char character)
        if (buf & mask)
        {
            if (kill(server_pid, SIGUSR1) == -1)
-               ft_fputstr("Errow while sending\n");
+               error_exit(SENDING_ERROR);
        }
        else
        {
            if (kill(server_pid, SIGUSR2) == -1)
-               ft_fputstr("Error while sending\n");
+               error_exit(SENDING_ERROR);
        }
        mask >>= 1;
        while (g_status != 1)
@@ -49,13 +44,12 @@ int main(int argc, char **argv)
 
     if (argc != 3)
     {
-        ft_fputstr("Format: ./client <server_pid> <text>");
-        exit(0);
+        ft_fputstr("format error!\nformat: ./client <server_pid> <text>", 2);
+        exit(1);
     }
     i = 0;
     server_pid = ft_atoi(argv[1]);
     signal(SIGUSR1, ack);
-    signal(SIGUSR2, ack);
     while (argv[2][i])
         send_signal(server_pid, argv[2][i++]);
     send_signal(server_pid, '\0');

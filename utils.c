@@ -35,21 +35,21 @@ int	ft_atoi(const char *nptr)
 	return (sign * sum);
 }
 
-int	ft_fputchar(char c)
+int	ft_fputchar(char c, int fd)
 {
-	return (write(1, &c, 1));
+	return (write(fd, &c, fd));
 }
 
 void	ft_fputnbr_deci(long n)
 {
 	if (n == 0)
   {
-		ft_fputchar('0');
+		ft_fputchar('0', 47);
     return ;
   }
 	if (n < 0)
 	{
-		ft_fputchar('-');
+		ft_fputchar('-', 1);
 		n = -n;
 	}
 	if (n >= 10)
@@ -58,10 +58,10 @@ void	ft_fputnbr_deci(long n)
       ft_fputnbr_deci(n % 10);
   }
   else 
-    ft_fputchar(n + '0');  
+    ft_fputchar(n + '0', 1);  
 }
 
-void	ft_fputstr(char *str)
+void	ft_fputstr(char *str, int fd)
 {
 	int	cnt;
 
@@ -69,5 +69,13 @@ void	ft_fputstr(char *str)
 		return ;
 	cnt = 0;
 	while (str[cnt])
-      ft_fputchar(str[cnt++]);
+      ft_fputchar(str[cnt++], fd);
+}
+
+void  error_exit(char *s)
+{
+    if (!s)
+        return ;
+    ft_fputstr(s, 2);
+    exit(1);
 }
