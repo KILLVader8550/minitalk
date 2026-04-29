@@ -1,4 +1,4 @@
-This project has been created as part of the 42 curriculum by **naratass**
+*This project has been created as part of the 42 curriculum by **naratass** *
 
 ### Description
 Minitalk is project about how to make process send message to each other by use UNIX signal
