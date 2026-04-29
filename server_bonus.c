@@ -45,8 +45,10 @@ int main()
     ft_fputstr("PID: ", 1);
     ft_fputnbr_deci(getpid());
     ft_fputchar('\n', 1);
-    sigaction(SIGUSR1, &sa, NULL);
-    sigaction(SIGUSR2, &sa, NULL);
+    if (sigaction(SIGUSR1, &sa, NULL))
+			error_exit(SENDING_ERROR);
+    if (sigaction(SIGUSR2, &sa, NULL))
+			error_exit(SENDING_ERROR);
     while(1)
         pause();
     return (0);

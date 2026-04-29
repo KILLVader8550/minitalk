@@ -2,8 +2,9 @@
 
 int g_status = 0;
 
-static void ack()
+static void ack(int signal)
 {
+		(void)signal;
     ft_fputstr("SEND SUCCESS\n", 1);
     g_status = 1;
 }
@@ -49,7 +50,8 @@ int main(int argc, char **argv)
     }
     i = 0;
     server_pid = ft_atoi(argv[1]);
-    signal(SIGUSR1, ack);
+    if (signal(SIGUSR1, ack) == SIG_ERR)
+			error_exit(SENDING_ERROR);
     while (argv[2][i])
         send_signal(server_pid, argv[2][i++]);
     send_signal(server_pid, '\0');

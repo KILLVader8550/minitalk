@@ -8,7 +8,7 @@ SRC_S = server.c utils.c
 SRC_C = client.c utils.c
 
 BONUS_S = server_bonus.c utils_bonus.c
-BONUS_C = server_bonus.c utils_bonus.c
+BONUS_C = client_bonus.c utils_bonus.c
 
 FLAG = -Wall -Werror -Wextra
 
@@ -16,7 +16,7 @@ OBJ_S = $(SRC_S:%.c=%.o)
 OBJ_C = $(SRC_C:%.c=%.o)
 
 BONUS_S_O = $(BONUS_S:%.c=%.o)
-BONUS_C_O = $(BONUS_S:%.c=%.o)
+BONUS_C_O = $(BONUS_C:%.c=%.o)
 
 %.o : %.c
 	cc $(FLAG) -c $< -o $@
@@ -29,11 +29,11 @@ $(SERVER) : $(OBJ_S)
 $(CLIENT) : $(OBJ_C)
 	cc $(FLAG) $(OBJ_C) -o $(CLIENT)
 
-$(SERVER_BONUS) : $(OBJ_S)
-	cc $(FLAG) $(OBJ_S) -o $(SERVER_BONUS)
+$(SERVER_BONUS) : $(BONUS_S_O)
+	cc $(FLAG) $(BONUS_S_O) -o $(SERVER_BONUS)
 
-$(CLIENT_BONUS) : $(OBJ_C)
-	cc $(FLAG) $(OBJ_C) -o $(CLIENT_BONUS)
+$(CLIENT_BONUS) : $(BONUS_C_O)
+	cc $(FLAG) $(BONUS_C_O) -o $(CLIENT_BONUS)
 
 bonus : $(SERVER_BONUS) $(CLIENT_BONUS)
 
