@@ -1,4 +1,5 @@
 #include "minitalk.h"
+#include <stdio.h>
 
 static void	*ft_memset(void *s, int c, size_t n)
 {
@@ -43,6 +44,7 @@ int main()
     sa.sa_sigaction = &handler_signal;
     sa.sa_flags = SA_SIGINFO;
     ft_fputstr("PID: ", 1);
+		printf("%d\nPID: ", getpid());
     ft_fputnbr_deci(getpid());
     ft_fputchar('\n', 1);
     if (sigaction(SIGUSR1, &sa, NULL))

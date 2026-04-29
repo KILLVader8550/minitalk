@@ -44,7 +44,7 @@ void	ft_fputnbr_deci(long n)
 {
 	if (n == 0)
   {
-		ft_fputchar('0', 47);
+		ft_fputchar('0', 1);
     return ;
   }
 	if (n < 0)
