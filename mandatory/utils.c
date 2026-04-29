@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: naratass <naratass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:50:26 by naratass          #+#    #+#             */
-/*   Updated: 2025/09/06 12:50:58 by naratass         ###   ########.fr       */
+/*   Updated: 2026/04/29 17:19:05 by naratass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	ft_fputchar(char c, int fd)
 void	ft_fputnbr_deci(long n)
 {
 	if (n == 0)
-  {
+	{
 		ft_fputchar('0', 1);
-    return ;
-  }
+		return ;
+	}
 	if (n < 0)
 	{
 		ft_fputchar('-', 1);
@@ -54,11 +54,11 @@ void	ft_fputnbr_deci(long n)
 	}
 	if (n >= 10)
 	{
-      ft_fputnbr_deci(n / 10);
-      ft_fputnbr_deci(n % 10);
-  }
-  else 
-    ft_fputchar(n + '0', 1);  
+		ft_fputnbr_deci(n / 10);
+		ft_fputnbr_deci(n % 10);
+	}
+	else
+		ft_fputchar(n + '0', 1);
 }
 
 void	ft_fputstr(char *str, int fd)
@@ -69,13 +69,13 @@ void	ft_fputstr(char *str, int fd)
 		return ;
 	cnt = 0;
 	while (str[cnt])
-      ft_fputchar(str[cnt++], fd);
+		ft_fputchar(str[cnt++], fd);
 }
 
-void  error_exit(char *s)
+void	error_exit(char *s)
 {
-    if (!s)
-        return ;
-    ft_fputstr(s, 2);
-    exit(1);
+	if (!s)
+		return ;
+	ft_fputstr(s, 2);
+	exit(1);
 }
