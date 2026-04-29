@@ -4,11 +4,11 @@ CLIENT = client
 SERVER_BONUS = server_bonus
 CLIENT_BONUS = client_bonus
 
-SRC_S = server.c utils.c
-SRC_C = client.c utils.c
+SRC_S = mandatory/server.c mandatory/utils.c
+SRC_C = mandatory/client.c mandatory/utils.c
 
-BONUS_S = server_bonus.c utils_bonus.c
-BONUS_C = client_bonus.c utils_bonus.c
+BONUS_S = bonus/server_bonus.c bonus/utils_bonus.c
+BONUS_C = bonus/client_bonus.c bonus/utils_bonus.c
 
 FLAG = -Wall -Werror -Wextra
 
