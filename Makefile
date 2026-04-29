@@ -10,7 +10,7 @@ SRC_C = client.c utils.c
 BONUS_S = server_bonus.c utils_bonus.c
 BONUS_C = client_bonus.c utils_bonus.c
 
-FLAG = -fsanitize=address -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra
 
 OBJ_S = $(SRC_S:%.c=%.o)
 OBJ_C = $(SRC_C:%.c=%.o)
