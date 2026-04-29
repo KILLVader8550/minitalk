@@ -8,8 +8,8 @@
 
 int		ft_atoi(const char *nptr);
 int		ft_fputchar(char c, int fd);
-void  ft_fputnbr_deci(long n);
+void	ft_fputnbr_deci(long n);
 void	ft_fputstr(char *str, int fd);
-void  error_exit(char *s);
+void	error_exit(char *s);
 
 #endif
