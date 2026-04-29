@@ -4,6 +4,7 @@ int g_status = 0;
 
 static void ack()
 {
+    ft_fputstr("SEND SUCCESS\n", 1);
     g_status = 1;
 }
 

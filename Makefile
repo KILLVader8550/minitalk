@@ -10,7 +10,7 @@ SRC_C = client.c utils.c
 BONUS_S = server_bonus.c utils_bonus.c
 BONUS_C = server_bonus.c utils_bonus.c
 
-FLAG = -fsanitize=address -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra
 
 OBJ_S = $(SRC_S:%.c=%.o)
 OBJ_C = $(SRC_C:%.c=%.o)
@@ -41,7 +41,7 @@ clean :
 	rm -f $(OBJ_S) $(OBJ_C) $(BONUS_S_O) $(BONUS_C_O)
 
 fclean : clean
-	rm -f $(SERVER) $(CLIENT) $(BONUS_C) $(BONUS_S)
+	rm -f $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS)
 
 re : fclean all
 
